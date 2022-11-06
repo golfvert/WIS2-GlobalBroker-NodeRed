@@ -45,6 +45,7 @@ Copy & Paste the subscriber_mqtt_1 to get one container per WIS2Node or other Gl
       - MQTT_PUB_PASSWORD=
       - MQTT_MONIT_CENTREID=Name_of_Center
       - MQTT_MONIT_TOPIC=Topic_to_publish_on_Global_Broker
+      - MSG_CHECK_OPTION=verify      # Should messages be "verify" (just add _comment in the message), "discard" (bin the message if not correct), "ignore" (don't check the messages)
     ports:
       - "1880:1880"
     networks:
