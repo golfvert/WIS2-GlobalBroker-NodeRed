@@ -11,10 +11,11 @@ The repo has been cloned from the official NodeRed repository.
 ## What does it do ?
 
 1. Listen to subscribed topics from WIS2Node and other Global Brokers (one subscription per container)
-2. Look at the `id` in the message. 
-3. Through a redis request check if that `id` has already been seen in the last 15 minutes. If yes, simply discard the message
-4. If not, publish the message to the attached Global Broker
-5. It also provides prometheus metrics available at http://@IP:1880/metrics
+2. Optionally verify/discard/ignore the message for its validity compared to approved message format
+3. Look at the `id` in the message. 
+4. Through a redis request check if that `id` has already been seen in the last 15 minutes. If yes, simply discard the message
+5. If not, publish the message to the attached Global Broker
+6. It also provides prometheus metrics available at http://@IP:1880/metrics
 
 ## How to use it ?
 
