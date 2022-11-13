@@ -268,6 +268,7 @@ module.exports = {
 
     // Customising the editor
     editorTheme: {
+        tours: false,
         projects: {
             // To enable the Projects feature, set this value to true
             enabled: false
