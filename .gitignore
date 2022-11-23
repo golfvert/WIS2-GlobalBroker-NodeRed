@@ -70,3 +70,7 @@ typings/
 package-lock.json
 node_modules
 *.backup
+
+.config*
+.sessions.json
+known_hosts.sh
