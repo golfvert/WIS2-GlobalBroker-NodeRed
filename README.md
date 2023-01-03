@@ -61,7 +61,7 @@ When done, save the docker-compose.yaml and start it with `docker compose up -d`
 
 It will subscribe to all "remote" destinations (WIS2node(s), other Global Brokers) and will publish to the local Global Broker.
 
-This is not production ready, just a tool to show how WIS2 and in particular the Global Broker part will work.
+Initially this was mainly a proof of concept implementation. However, it is in use for a few months now and has proven to be rock solid. So using it for 24/7 production can be considered with confidence.
 
 ## How to modify it ?
 
