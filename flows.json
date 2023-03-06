@@ -130,11 +130,12 @@
             "e8e9918ab2ea8a60",
             "c337fed9c7000a43",
             "f8b75275aeb43797",
-            "b5bc10e1081d22fc"
+            "b5bc10e1081d22fc",
+            "56e079e2cc71499c"
         ],
         "x": 154,
-        "y": 879,
-        "w": 972,
+        "y": 859,
+        "w": 1152,
         "h": 422
     },
     {
@@ -425,6 +426,13 @@
                 "p": "broker.usetls",
                 "pt": "msg",
                 "to": "$contains($env(\"MQTT_SUB_BROKER\"),/wss/) or $contains($env(\"MQTT_SUB_BROKER\"),/mqtts/)",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "broker.verifyservercert",
+                "pt": "msg",
+                "to": "$length($env(\"MQTT_SUB_VERIFYCERT\")) = 0 ? true : $env(\"MQTT_SUB_VERIFYCERT\")",
                 "tot": "jsonata"
             },
             {
@@ -1020,8 +1028,8 @@
         "g": "0e2c3f294eb753b6",
         "name": "Anti-loop",
         "info": "",
-        "x": 240,
-        "y": 920,
+        "x": 260,
+        "y": 900,
         "wires": []
     },
     {
@@ -1039,8 +1047,8 @@
         "correl": "",
         "expiry": "",
         "broker": "ac0560c0180e4641",
-        "x": 1040,
-        "y": 1140,
+        "x": 1220,
+        "y": 1120,
         "wires": []
     },
     {
@@ -1062,8 +1070,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 680,
-        "y": 1180,
+        "x": 860,
+        "y": 1160,
         "wires": [
             [
                 "83eb6e6b9aadb4ad",
@@ -1111,8 +1119,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 850,
-        "y": 1200,
+        "x": 1030,
+        "y": 1180,
         "wires": [
             [
                 "923e6d83e67ea3db"
@@ -1132,8 +1140,8 @@
         "paramsType": "json",
         "payloadType": "json",
         "block": false,
-        "x": 980,
-        "y": 1200,
+        "x": 1160,
+        "y": 1180,
         "wires": [
             []
         ]
@@ -1144,16 +1152,16 @@
         "z": "3af82246.3634ae",
         "g": "0e2c3f294eb753b6",
         "name": "Subscriber",
-        "topic": "${MQTT_SUB_TOPIC}",
+        "topic": "",
         "qos": "2",
         "datatype": "json",
         "broker": "8cf5f6b5.937088",
         "nl": false,
         "rap": true,
         "rh": 0,
-        "inputs": 0,
-        "x": 240,
-        "y": 1060,
+        "inputs": 1,
+        "x": 420,
+        "y": 1040,
         "wires": [
             [
                 "df08c4d8b258e5c5",
@@ -1189,8 +1197,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 870,
-        "y": 1140,
+        "x": 1050,
+        "y": 1120,
         "wires": [
             [
                 "5a32454d94055eac"
@@ -1204,8 +1212,8 @@
         "g": "0e2c3f294eb753b6",
         "name": "Subscriber",
         "metric": "3ca20af8a00e4653",
-        "x": 570,
-        "y": 1060,
+        "x": 750,
+        "y": 1040,
         "wires": []
     },
     {
@@ -1228,8 +1236,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 410,
-        "y": 1060,
+        "x": 590,
+        "y": 1040,
         "wires": [
             [
                 "5af91b47829c129d"
@@ -1243,8 +1251,8 @@
         "g": "0e2c3f294eb753b6",
         "name": "Publisher",
         "metric": "a566680eb78ef6ce",
-        "x": 1040,
-        "y": 1080,
+        "x": 1220,
+        "y": 1060,
         "wires": []
     },
     {
@@ -1267,8 +1275,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 870,
-        "y": 1080,
+        "x": 1050,
+        "y": 1060,
         "wires": [
             [
                 "634a216d184c5685"
@@ -1295,8 +1303,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 400,
-        "y": 940,
+        "x": 580,
+        "y": 920,
         "wires": [
             []
         ]
@@ -1321,8 +1329,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 850,
-        "y": 1260,
+        "x": 1030,
+        "y": 1240,
         "wires": [
             []
         ]
@@ -1346,8 +1354,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 400,
-        "y": 1000,
+        "x": 580,
+        "y": 980,
         "wires": [
             [
                 "67f1804f7d58c4e3"
@@ -1369,8 +1377,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
-        "y": 980,
+        "x": 730,
+        "y": 960,
         "wires": [
             [
                 "031988bb69f85a07"
@@ -1388,8 +1396,8 @@
             "f8b75275aeb43797",
             "b5bc10e1081d22fc"
         ],
-        "x": 305,
-        "y": 1180,
+        "x": 485,
+        "y": 1160,
         "wires": [
             [
                 "e8e9918ab2ea8a60"
@@ -1415,8 +1423,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 690,
-        "y": 980,
+        "x": 870,
+        "y": 960,
         "wires": [
             [
                 "f8b75275aeb43797"
@@ -1446,8 +1454,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 860,
-        "y": 1020,
+        "x": 1040,
+        "y": 1000,
         "wires": [
             [],
             [
@@ -1462,8 +1470,8 @@
         "g": "0e2c3f294eb753b6",
         "name": "Invalid",
         "metric": "c344793f83ad40d6",
-        "x": 1010,
-        "y": 980,
+        "x": 1190,
+        "y": 960,
         "wires": []
     },
     {
@@ -1486,8 +1494,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 870,
-        "y": 980,
+        "x": 1050,
+        "y": 960,
         "wires": [
             [
                 "3d51c30ba2785e20"
@@ -1507,8 +1515,8 @@
         "paramsType": "json",
         "payloadType": "json",
         "block": false,
-        "x": 540,
-        "y": 1180,
+        "x": 720,
+        "y": 1160,
         "wires": [
             [
                 "f0aaab7d00875d14"
@@ -1558,8 +1566,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 400,
-        "y": 1180,
+        "x": 580,
+        "y": 1160,
         "wires": [
             [
                 "ad53549c2888fe15"
@@ -1576,8 +1584,8 @@
         "links": [
             "55162673b6a94ebc"
         ],
-        "x": 495,
-        "y": 1020,
+        "x": 675,
+        "y": 1000,
         "wires": []
     },
     {
@@ -1590,8 +1598,8 @@
         "links": [
             "55162673b6a94ebc"
         ],
-        "x": 815,
-        "y": 940,
+        "x": 995,
+        "y": 920,
         "wires": []
     },
     {
@@ -1604,8 +1612,39 @@
         "links": [
             "55162673b6a94ebc"
         ],
-        "x": 975,
-        "y": 1020,
+        "x": 1155,
+        "y": 1000,
         "wires": []
+    },
+    {
+        "id": "56e079e2cc71499c",
+        "type": "inject",
+        "z": "3af82246.3634ae",
+        "g": "0e2c3f294eb753b6",
+        "name": "Subscription",
+        "props": [
+            {
+                "p": "action",
+                "v": "subscribe",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "$split($env(\"MQTT_SUB_TOPIC\"),\",\")",
+                "vt": "jsonata"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "x": 270,
+        "y": 1040,
+        "wires": [
+            [
+                "0ba924a28af55b20"
+            ]
+        ]
     }
 ]
