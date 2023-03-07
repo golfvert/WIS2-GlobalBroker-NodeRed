@@ -26,21 +26,20 @@ and edit:
 
 Copy & Paste the subscriber_mqtt_1 to get one container per WIS2Node or other Global Brokers to subscribe to. Do NOT subscribe to the local Global Broker.
 - Change the name of the container (make sure it is unique!)
-- Change all MQTT_SUB_* to connect to the remote broker and to the topic from that source. In the example below `wis2/a/origin/fra/#` will subscribe to all topic from France according to WIS2 agreed topic hierarchy.
-- Change ports 1st 1880:1880, 2nd 1881:1880,...
+- Change all MQTT_SUB_* to connect to the remote broker and to the topic from that source. In the example below `origin/a/wis2/fra/#` will subscribe to all topic from France according to WIS2 agreed topic hierarchy.
+- Change ports 1st 1880:1880, 2nd 1881:1880,... or run behind a traefik proxy.
 
 ```
   subscriber_mqtt_1:
     container_name: subscriber_mqtt_1
     image: golfvert/wis2globalbrokernodered
-    env_file:
-      - ./publisher.env
     environment:
       - TZ=Europe/Paris
       - MQTT_SUB_BROKER=Broker_URL   # WIS2Node URL broker such as mqtts://broker.example.com:8883 or wss://broker.example.com:443
       - MQTT_SUB_USERNAME=
       - MQTT_SUB_PASSWORDD=
-      - MQTT_SUB_TOPIC=Topic_to_sub   # e.g. wis2/a/origin/FRA/#
+      - MQTT_SUB_TOPIC=Topic_to_sub   # e.g. origin/a/wis2/fra/#. It can be a lit of topics separated by ",". Such as origin/a/wis2/fra/#,cache/a/wis2/fra/#
+      - MQTT_SUB_VERIFYCERT= true   # if using SSL should the certificate by checked (prevent slef-signed certificates to work. Or not)
       - MQTT_PUB_BROKER=GlobalBroker_URL   # Global Broker URL such as mqtts://globalbroker.site.com:8883 or wss://globalbroker.site.com:443
       - MQTT_PUB_USERNAME=
       - MQTT_PUB_PASSWORD=
@@ -54,12 +53,34 @@ Copy & Paste the subscriber_mqtt_1 to get one container per WIS2Node or other Gl
     depends_on:
       - redis
  ```
+There must be a redis container running on the same wis2relay bridged docker network. So a compose like that can be used:
+
+```
+services:
+  redis:
+    container_name: redis
+    image: redis:latest
+    command: redis-server --save 20 1
+    ports:
+      - "6379:6379"
+    networks:
+      - wis2relay
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - /localdir/redis:/data
+networks:
+  wis2relay:
+    driver: bridge
+    
+```
+
 MQTT_MONIT_TOPIC is optional. If defined, statistics on the status of the subsciption to the remote broker will be published to the Global Broker on the topic MQTT_MONIT_TOPIC/status. And every minute, the time difference (in seconds) between the current time and the time when the last message has been received from the remote broker. This will will be published on MQTT_MONIT_TOPIC/pubsub. If MQTT_MONIT_TOPIC is empty or does not exist no statistics will be published.
 MQTT_MONIT_CENTREID is used as a variable in the payload sent to the Global Broker.
 
 When done, save the docker-compose.yaml and start it with `docker compose up -d`
 
-It will  subscribe to all "remote" destinations (WIS2node(s), other Global Brokers) and will publish to the local Global Broker.
+It will  subscribe to all "remote" destinations (WIS2node(s), Global Caches, other Global Brokers) and will publish to the local Global Broker.
 
 Initially this was mainly a proof of concept implementation. However, it is in use for a few months now and has proven to be rock solid. So using it for 24/7 production can be considered with confidence.
 
