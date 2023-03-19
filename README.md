@@ -86,6 +86,9 @@ It will  subscribe to all "remote" destinations (WIS2node(s), Global Caches, oth
 
 Initially this was mainly a proof of concept implementation. However, it is in use for a few months now and has proven to be rock solid. So using it for 24/7 production can be considered with confidence.
 
+## Check Global Broker Anti-Loop Node-Red container behaviour
+Node-red interface is available at http://@IP:1880/admin/ (unless behing a proxy or other changes - eg. port). Accessing this interface will show the flows in action. Adding debug nodes may help in understaning the function of the anti-loop software. This interface is NOT password protected. Typically unprotected access should be prevented through port filtering and proxying the access via traefik.
+
 ## How to modify it ?
 
 This is a fork from the official Node-Red repo. Follow official documentation to tweak it to your needs.
