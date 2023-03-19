@@ -1,6 +1,7 @@
 # WIS2-GlobalBroker-NodeRed
 
-The code in this repository is to provide basic reference of a Global Broker as defined in the (upcoming) technical specification of WIS2.
+The code in this repository is to provide basic reference of a Global Broker as defined in the (draft) technical specification of WIS2. 
+See https://community.wmo.int/en/WIS2_Technical_Specification_Guidance
 The repo has been cloned from the official NodeRed repository.
 
 ## What is here ?
@@ -24,10 +25,10 @@ Download
 
 and edit:
 
-Copy & Paste the subscriber_mqtt_1 to get one container per WIS2Node or other Global Brokers to subscribe to. Do NOT subscribe to the local Global Broker.
+Copy & Paste the subscriber_mqtt_1 to get one container per WIS2Node or other Global Brokers / Global Cache to subscribe to. Do NOT subscribe to the local Global Broker.
 - Change the name of the container (make sure it is unique!)
-- Change all MQTT_SUB_* to connect to the remote broker and to the topic from that source. In the example below `origin/a/wis2/fra/#` will subscribe to all topic from France according to WIS2 agreed topic hierarchy.
-- Change ports 1st 1880:1880, 2nd 1881:1880,... or run behind a traefik proxy.
+- Change all MQTT_SUB_* to connect to the remote broker and to the topic from that source. In the example below `origin/a/wis2/fra/#` will subscribe to all topic from France according to WIS2 agreed topic hierarchy. It can be a list of topics separated by ",". Such as origin/a/wis2/fra/#,cache/a/wis2/fra/#. This is, typically, useful when subscribing to another Global Broker.
+- Change ports 1st 1880:1880, 2nd 1881:1880,... or run behind a traefik proxy (this is the preferred method).
 
 ```
   subscriber_mqtt_1:
@@ -37,15 +38,15 @@ Copy & Paste the subscriber_mqtt_1 to get one container per WIS2Node or other Gl
       - TZ=Europe/Paris
       - MQTT_SUB_BROKER=Broker_URL   # WIS2Node URL broker such as mqtts://broker.example.com:8883 or wss://broker.example.com:443
       - MQTT_SUB_USERNAME=
-      - MQTT_SUB_PASSWORDD=
-      - MQTT_SUB_TOPIC=Topic_to_sub   # e.g. origin/a/wis2/fra/#. It can be a lit of topics separated by ",". Such as origin/a/wis2/fra/#,cache/a/wis2/fra/#
+      - MQTT_SUB_PASSWORD=
+      - MQTT_SUB_TOPIC=Topic_to_sub   # e.g. origin/a/wis2/fra/#. 
       - MQTT_SUB_VERIFYCERT= true   # if using SSL should the certificate by checked (prevent slef-signed certificates to work. Or not)
       - MQTT_PUB_BROKER=GlobalBroker_URL   # Global Broker URL such as mqtts://globalbroker.site.com:8883 or wss://globalbroker.site.com:443
       - MQTT_PUB_USERNAME=
       - MQTT_PUB_PASSWORD=
       - MQTT_MONIT_CENTREID=Name_of_Center
       - MQTT_MONIT_TOPIC=Topic_to_publish_on_Global_Broker
-      - MSG_CHECK_OPTION=verify      # Should messages be "verify" (just add _comment in the message), "discard" (bin the message if not correct), "ignore" (don't check the messages)
+      - MSG_CHECK_OPTION=verify      # Should messages be "verify" (just add _comment in the notification message), "discard" (bin the message if not correct), "ignore" (don't check the messages)
     ports:
       - "1880:1880"
     networks:
@@ -53,6 +54,7 @@ Copy & Paste the subscriber_mqtt_1 to get one container per WIS2Node or other Gl
     depends_on:
       - redis
  ```
+ 
 There must be a redis container running on the same wis2relay bridged docker network. So a compose like that can be used:
 
 ```
