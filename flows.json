@@ -204,23 +204,23 @@
     {
         "id": "3ca20af8a00e4653",
         "type": "prometheus-metric-config",
-        "name": "message_subscriber",
+        "name": "wmo_wis2_gb_messages_received",
         "help": "Number of messages received",
-        "labels": "host",
+        "labels": "centre_id, country",
         "mtype": "counter"
     },
     {
         "id": "a566680eb78ef6ce",
         "type": "prometheus-metric-config",
-        "name": "message_publisher",
+        "name": "wmo_wis2_gb_messages_published",
         "help": "Number of message published",
-        "labels": "host",
+        "labels": "centre_id, country",
         "mtype": "counter"
     },
     {
         "id": "c344793f83ad40d6",
         "type": "prometheus-metric-config",
-        "name": "message_invalid",
+        "name": "wmo_wis2_gb_messages_invalid",
         "help": "Number of invalid messages",
         "labels": "host",
         "mtype": "counter"
@@ -535,7 +535,7 @@
                 "t": "set",
                 "p": "centreid",
                 "pt": "flow",
-                "to": "MQTT_MONIT_CENTREID",
+                "to": "PROM_CENTRE_ID",
                 "tot": "env"
             }
         ],
@@ -1227,7 +1227,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "{\t   \"op\":\"inc\",\t   \"labels\":{\"host\": $env(\"MQTT_SUB_BROKER\")},\t   \"val\":1 \t}",
+                "to": "{\t   \"op\":\"inc\",\t   \"labels\":{\t      \"centre_id\": $env(\"PROM_CENTRE_ID\"),\t      \"country\": $env(\"PROM_COUNTRY\")\t   },\t   \"val\":1 \t}",
                 "tot": "jsonata"
             }
         ],
@@ -1266,7 +1266,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "{\t   \"op\":\"inc\",\t   \"labels\":{\"host\": $env(\"MQTT_SUB_BROKER\")},\t   \"val\":1 \t}",
+                "to": "{\t   \"op\":\"inc\",\t   \"labels\":{\t      \"centre_id\": $env(\"PROM_CENTRE_ID\"),\t      \"country\": $env(\"PROM_COUNTRY\")\t   },\t   \"val\":1 \t}",
                 "tot": "jsonata"
             }
         ],
@@ -1485,7 +1485,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "{\t   \"op\":\"inc\",\t   \"labels\":{\"host\": $env(\"MQTT_SUB_BROKER\")},\t   \"val\":1 \t}",
+                "to": "{\t   \"op\":\"inc\",\t   \"labels\":{\t      \"centre_id\": $env(\"PROM_CENTRE_ID\"),\t      \"country\": $env(\"PROM_COUNTRY\")\t   },\t   \"val\":1 \t}",
                 "tot": "jsonata"
             }
         ],
