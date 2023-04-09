@@ -44,9 +44,10 @@ Copy & Paste the subscriber_mqtt_1 to get one container per WIS2Node or other Gl
       - MQTT_PUB_BROKER=GlobalBroker_URL   # Global Broker URL such as mqtts://globalbroker.site.com:8883 or wss://globalbroker.site.com:443
       - MQTT_PUB_USERNAME=
       - MQTT_PUB_PASSWORD=
-      - MQTT_MONIT_CENTREID=Name_of_Center
       - MQTT_MONIT_TOPIC=Topic_to_publish_on_Global_Broker
       - MSG_CHECK_OPTION=verify      # Should messages be "verify" (just add _comment in the notification message), "discard" (bin the message if not correct), "ignore" (don't check the messages)
+      - PROM_CENTRE_ID=Name_of_Center used as label
+      - PROM_COUNTRY=3-letter code used as label
     ports:
       - "1880:1880"
     networks:
@@ -78,7 +79,8 @@ networks:
 ```
 
 MQTT_MONIT_TOPIC is optional. If defined, statistics on the status of the subsciption to the remote broker will be published to the Global Broker on the topic MQTT_MONIT_TOPIC/status. And every minute, the time difference (in seconds) between the current time and the time when the last message has been received from the remote broker. This will will be published on MQTT_MONIT_TOPIC/pubsub. If MQTT_MONIT_TOPIC is empty or does not exist no statistics will be published.
-MQTT_MONIT_CENTREID is used as a variable in the payload sent to the Global Broker.
+PROM_CENTRE_ID is used as a variable as label in Prometheus.
+PROM_COUNTRY is used as a variable as label in Prometheus.
 
 When done, save the docker-compose.yaml and start it with `docker compose up -d`
 
