@@ -73,4 +73,5 @@ node_modules
 
 .config*
 .sessions.json
+.flows*
 known_hosts.sh
