@@ -20,7 +20,6 @@
             "color": "#a4a4a4"
         },
         "nodes": [
-            "0cca531f0a119cba",
             "846fbfa4f7abf7b8",
             "77e15331ab74fbee",
             "c825801f7eec98ed",
@@ -110,7 +109,6 @@
             "5a32454d94055eac",
             "f0aaab7d00875d14",
             "83eb6e6b9aadb4ad",
-            "923e6d83e67ea3db",
             "0ba924a28af55b20",
             "d1007e39ed03dbdd",
             "5af91b47829c129d",
@@ -126,7 +124,6 @@
             "88fdc7d698acb2d7",
             "3d51c30ba2785e20",
             "343e0c53a688e686",
-            "ad53549c2888fe15",
             "e8e9918ab2ea8a60",
             "c337fed9c7000a43",
             "f8b75275aeb43797",
@@ -137,14 +134,6 @@
         "y": 859,
         "w": 1152,
         "h": 422
-    },
-    {
-        "id": "8f497140bcbdd802",
-        "type": "redis-config",
-        "name": "Redis",
-        "options": "redis:6379",
-        "cluster": false,
-        "optionsType": "str"
     },
     {
         "id": "ac0560c0180e4641",
@@ -224,19 +213,6 @@
         "help": "Number of invalid messages",
         "labels": "centre_id,country",
         "mtype": "counter"
-    },
-    {
-        "id": "0cca531f0a119cba",
-        "type": "redis-instance",
-        "z": "3af82246.3634ae",
-        "g": "3f9319440dce9b0d",
-        "server": "8f497140bcbdd802",
-        "name": "",
-        "topic": "redis",
-        "location": "flow",
-        "x": 230,
-        "y": 140,
-        "wires": []
     },
     {
         "id": "846fbfa4f7abf7b8",
@@ -1122,27 +1098,6 @@
         "x": 1030,
         "y": 1180,
         "wires": [
-            [
-                "923e6d83e67ea3db"
-            ]
-        ]
-    },
-    {
-        "id": "923e6d83e67ea3db",
-        "type": "redis-command",
-        "z": "3af82246.3634ae",
-        "g": "0e2c3f294eb753b6",
-        "server": "8f497140bcbdd802",
-        "command": "set",
-        "name": "",
-        "topic": "",
-        "params": "[]",
-        "paramsType": "json",
-        "payloadType": "json",
-        "block": false,
-        "x": 1160,
-        "y": 1180,
-        "wires": [
             []
         ]
     },
@@ -1503,27 +1458,6 @@
         ]
     },
     {
-        "id": "ad53549c2888fe15",
-        "type": "redis-command",
-        "z": "3af82246.3634ae",
-        "g": "0e2c3f294eb753b6",
-        "server": "8f497140bcbdd802",
-        "command": "get",
-        "name": "",
-        "topic": "",
-        "params": "[]",
-        "paramsType": "json",
-        "payloadType": "json",
-        "block": false,
-        "x": 720,
-        "y": 1160,
-        "wires": [
-            [
-                "f0aaab7d00875d14"
-            ]
-        ]
-    },
-    {
         "id": "e8e9918ab2ea8a60",
         "type": "change",
         "z": "3af82246.3634ae",
@@ -1570,7 +1504,7 @@
         "y": 1160,
         "wires": [
             [
-                "ad53549c2888fe15"
+                "f0aaab7d00875d14"
             ]
         ]
     },
