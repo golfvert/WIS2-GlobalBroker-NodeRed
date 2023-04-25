@@ -26,7 +26,8 @@
             "dae14136f482103c",
             "9e6943f9ea115417",
             "437c51adccb5ac31",
-            "6c2aa04153a511ed"
+            "6c2aa04153a511ed",
+            "f05136385e2ad414"
         ],
         "x": 154,
         "y": 39,
@@ -128,7 +129,9 @@
             "c337fed9c7000a43",
             "f8b75275aeb43797",
             "b5bc10e1081d22fc",
-            "56e079e2cc71499c"
+            "56e079e2cc71499c",
+            "1894956924b5c245",
+            "356570fbd8f0eaa6"
         ],
         "x": 154,
         "y": 859,
@@ -213,6 +216,14 @@
         "help": "Number of invalid messages",
         "labels": "centre_id,country",
         "mtype": "counter"
+    },
+    {
+        "id": "ec3f9e2983bac58a",
+        "type": "redis-config",
+        "name": "Redis",
+        "options": "REDIS_URL",
+        "cluster": false,
+        "optionsType": "env"
     },
     {
         "id": "846fbfa4f7abf7b8",
@@ -1098,7 +1109,9 @@
         "x": 1030,
         "y": 1180,
         "wires": [
-            []
+            [
+                "356570fbd8f0eaa6"
+            ]
         ]
     },
     {
@@ -1504,7 +1517,7 @@
         "y": 1160,
         "wires": [
             [
-                "f0aaab7d00875d14"
+                "1894956924b5c245"
             ]
         ]
     },
@@ -1579,6 +1592,59 @@
             [
                 "0ba924a28af55b20"
             ]
+        ]
+    },
+    {
+        "id": "f05136385e2ad414",
+        "type": "redis-instance",
+        "z": "3af82246.3634ae",
+        "g": "3f9319440dce9b0d",
+        "server": "ec3f9e2983bac58a",
+        "name": "",
+        "topic": "redis",
+        "location": "flow",
+        "x": 370,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1894956924b5c245",
+        "type": "redis-command",
+        "z": "3af82246.3634ae",
+        "g": "0e2c3f294eb753b6",
+        "server": "ec3f9e2983bac58a",
+        "command": "set",
+        "name": "",
+        "topic": "",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 720,
+        "y": 1160,
+        "wires": [
+            [
+                "f0aaab7d00875d14"
+            ]
+        ]
+    },
+    {
+        "id": "356570fbd8f0eaa6",
+        "type": "redis-command",
+        "z": "3af82246.3634ae",
+        "g": "0e2c3f294eb753b6",
+        "server": "ec3f9e2983bac58a",
+        "command": "set",
+        "name": "",
+        "topic": "",
+        "params": "[]",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 1160,
+        "y": 1180,
+        "wires": [
+            []
         ]
     }
 ]
