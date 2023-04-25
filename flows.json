@@ -222,7 +222,7 @@
         "type": "redis-config",
         "name": "Redis",
         "options": "REDIS_URL",
-        "cluster": false,
+        "cluster": "REDIS_CLUSTER",
         "optionsType": "env"
     },
     {
