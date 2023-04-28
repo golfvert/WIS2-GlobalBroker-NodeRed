@@ -221,9 +221,9 @@
         "id": "ec3f9e2983bac58a",
         "type": "redis-config",
         "name": "Redis",
-        "options": "REDIS_URL",
-        "cluster": "REDIS_CLUSTER",
-        "optionsType": "env"
+        "options": "redis:6379",
+        "cluster": false,
+        "optionsType": "str"
     },
     {
         "id": "846fbfa4f7abf7b8",
@@ -458,25 +458,6 @@
         ]
     },
     {
-        "id": "5ccebec688b13a48",
-        "type": "mqtt out",
-        "z": "3af82246.3634ae",
-        "g": "2cac6541d3b7ad29",
-        "name": "Publisher",
-        "topic": "",
-        "qos": "2",
-        "retain": "true",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "ac0560c0180e4641",
-        "x": 1120,
-        "y": 500,
-        "wires": []
-    },
-    {
         "id": "437c51adccb5ac31",
         "type": "change",
         "z": "3af82246.3634ae",
@@ -536,6 +517,49 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "6c2aa04153a511ed",
+        "type": "comment",
+        "z": "3af82246.3634ae",
+        "g": "3f9319440dce9b0d",
+        "name": "Initialize",
+        "info": "",
+        "x": 230,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "f05136385e2ad414",
+        "type": "redis-instance",
+        "z": "3af82246.3634ae",
+        "g": "3f9319440dce9b0d",
+        "server": "ec3f9e2983bac58a",
+        "name": "",
+        "topic": "redis",
+        "location": "flow",
+        "x": 370,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "5ccebec688b13a48",
+        "type": "mqtt out",
+        "z": "3af82246.3634ae",
+        "g": "2cac6541d3b7ad29",
+        "name": "Publisher",
+        "topic": "",
+        "qos": "2",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ac0560c0180e4641",
+        "x": 1120,
+        "y": 500,
+        "wires": []
     },
     {
         "id": "c13d3c5f9acc9999",
@@ -765,17 +789,6 @@
         "l": false
     },
     {
-        "id": "6c2aa04153a511ed",
-        "type": "comment",
-        "z": "3af82246.3634ae",
-        "g": "3f9319440dce9b0d",
-        "name": "Initialize",
-        "info": "",
-        "x": 230,
-        "y": 80,
-        "wires": []
-    },
-    {
         "id": "b1115d7b4bce6f22",
         "type": "comment",
         "z": "3af82246.3634ae",
@@ -785,6 +798,33 @@
         "x": 270,
         "y": 420,
         "wires": []
+    },
+    {
+        "id": "41b91a96767e65e6",
+        "type": "switch",
+        "z": "3af82246.3634ae",
+        "g": "2cac6541d3b7ad29",
+        "name": "Monitor ?",
+        "property": "topic_status",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "/status",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 420,
+        "y": 540,
+        "wires": [
+            [
+                "165bf02dd123e1ec",
+                "7893c076e786e4d3"
+            ]
+        ]
     },
     {
         "id": "0a2486d0f3d8bfd5",
@@ -954,33 +994,6 @@
         "x": 900,
         "y": 760,
         "wires": []
-    },
-    {
-        "id": "41b91a96767e65e6",
-        "type": "switch",
-        "z": "3af82246.3634ae",
-        "g": "2cac6541d3b7ad29",
-        "name": "Monitor ?",
-        "property": "topic_status",
-        "propertyType": "flow",
-        "rules": [
-            {
-                "t": "neq",
-                "v": "/status",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 420,
-        "y": 540,
-        "wires": [
-            [
-                "165bf02dd123e1ec",
-                "7893c076e786e4d3"
-            ]
-        ]
     },
     {
         "id": "1088ca7a02dfe855",
@@ -1593,19 +1606,6 @@
                 "0ba924a28af55b20"
             ]
         ]
-    },
-    {
-        "id": "f05136385e2ad414",
-        "type": "redis-instance",
-        "z": "3af82246.3634ae",
-        "g": "3f9319440dce9b0d",
-        "server": "ec3f9e2983bac58a",
-        "name": "",
-        "topic": "redis",
-        "location": "flow",
-        "x": 370,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "1894956924b5c245",
