@@ -27,7 +27,7 @@
             "9e6943f9ea115417",
             "437c51adccb5ac31",
             "6c2aa04153a511ed",
-            "f05136385e2ad414"
+            "051f1aadd5a065d6"
         ],
         "x": 154,
         "y": 39,
@@ -130,8 +130,8 @@
             "f8b75275aeb43797",
             "b5bc10e1081d22fc",
             "56e079e2cc71499c",
-            "1894956924b5c245",
-            "356570fbd8f0eaa6"
+            "0329c03404035be3",
+            "522e09cdb6843f51"
         ],
         "x": 154,
         "y": 859,
@@ -218,7 +218,7 @@
         "mtype": "counter"
     },
     {
-        "id": "ec3f9e2983bac58a",
+        "id": "cda1f3133883a18a",
         "type": "redis-config",
         "name": "Redis",
         "options": "redis:6379",
@@ -526,19 +526,6 @@
         "name": "Initialize",
         "info": "",
         "x": 230,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "f05136385e2ad414",
-        "type": "redis-instance",
-        "z": "3af82246.3634ae",
-        "g": "3f9319440dce9b0d",
-        "server": "ec3f9e2983bac58a",
-        "name": "",
-        "topic": "redis",
-        "location": "flow",
-        "x": 370,
         "y": 80,
         "wires": []
     },
@@ -1123,7 +1110,7 @@
         "y": 1180,
         "wires": [
             [
-                "356570fbd8f0eaa6"
+                "522e09cdb6843f51"
             ]
         ]
     },
@@ -1530,7 +1517,7 @@
         "y": 1160,
         "wires": [
             [
-                "1894956924b5c245"
+                "0329c03404035be3"
             ]
         ]
     },
@@ -1608,19 +1595,32 @@
         ]
     },
     {
-        "id": "1894956924b5c245",
+        "id": "051f1aadd5a065d6",
+        "type": "redis-instance",
+        "z": "3af82246.3634ae",
+        "g": "3f9319440dce9b0d",
+        "server": "cda1f3133883a18a",
+        "name": "",
+        "topic": "redis",
+        "location": "flow",
+        "x": 390,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0329c03404035be3",
         "type": "redis-command",
         "z": "3af82246.3634ae",
         "g": "0e2c3f294eb753b6",
-        "server": "ec3f9e2983bac58a",
+        "server": "cda1f3133883a18a",
         "command": "set",
-        "name": "",
+        "name": "Get",
         "topic": "",
         "params": "[]",
         "paramsType": "json",
         "payloadType": "json",
         "block": false,
-        "x": 720,
+        "x": 710,
         "y": 1160,
         "wires": [
             [
@@ -1629,19 +1629,19 @@
         ]
     },
     {
-        "id": "356570fbd8f0eaa6",
+        "id": "522e09cdb6843f51",
         "type": "redis-command",
         "z": "3af82246.3634ae",
         "g": "0e2c3f294eb753b6",
-        "server": "ec3f9e2983bac58a",
+        "server": "cda1f3133883a18a",
         "command": "set",
-        "name": "",
+        "name": "Set",
         "topic": "",
         "params": "[]",
         "paramsType": "json",
         "payloadType": "json",
         "block": false,
-        "x": 1160,
+        "x": 1150,
         "y": 1180,
         "wires": [
             []
